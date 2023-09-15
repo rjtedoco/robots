@@ -1,11 +1,16 @@
 import { FixedSizeList } from "react-window";
 import ListItem from "./ListItem";
 import { Robot } from "../common/types";
-import { Dispatch, SetStateAction } from "react";
+import { CSSProperties, Dispatch, SetStateAction } from "react";
 
 interface ListProps {
   robots: Robot[];
   setRobots: Dispatch<SetStateAction<Robot[]>>;
+}
+
+interface FixedSizeListProps {
+  index: number;
+  style: CSSProperties;
 }
 
 const List = ({ robots, setRobots }: ListProps) => {
@@ -20,7 +25,7 @@ const List = ({ robots, setRobots }: ListProps) => {
       itemSize={45}
       width={300}
     >
-      {({ index, style }) => {
+      {({ index, style }: FixedSizeListProps) => {
         const robot = robots[index];
         return (
           <ListItem
